@@ -1,7 +1,7 @@
 # encoding:utf-8
 '''
 Created on 2017年8月16日
-
+1、审查元素中查找backgroudimage
 @author: wangtaoyuan
 '''
 import urllib2
