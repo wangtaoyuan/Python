@@ -15,7 +15,7 @@ html = str0.find(r'.html')
 print html
 url = str0[href + 6:html + 5]
 print url
-# content = urllib.urlopen(url).read()#将网页内容读取下来
-# filename = url[-26:]
-# open(filename, 'w').write(content)
+content = urllib.urlopen(url).read()#将网页内容读取下来
+filename = url[-26:]
+open(filename, 'w').write(content)
 
