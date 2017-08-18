@@ -7,6 +7,8 @@ Created on 2017年8月16日
 import urllib2
 import requests
 import time
+import os
+import sys
 
 url = 'http://cn.bing.com'
 #伪装头信息
@@ -27,6 +29,8 @@ def downloadpic(image_url, save_path):
     with open(save_path, "wb") as code:
         code.write(r.content)
 tday = time.strftime('%Y%m%d',time.localtime()) 
-print tday    
-save_path = 'E:\\background\\bing%s.jpg' % tday
+print tday 
+path = os.path.abspath(os.path.dirname(sys.argv[0])) 
+save_path = path + '\\image\\bing%s.jpg' % tday
+# save_path = 'E:\\background\\bing%s.jpg' % tday
 downloadpic(img_url, save_path)
