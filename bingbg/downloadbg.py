@@ -21,16 +21,22 @@ head = content.find(r'g_img=') + len(r'g_img={url: "')
 tail = content.find(r'.jpg') + 4
 img_url = url + content[head: tail]#对content进行切片取图片的url
 time.sleep(1)
-print img_url
+# print img_url
 
 def downloadpic(image_url, save_path):
     r = requests.get(image_url)
 
     with open(save_path, "wb") as code:
         code.write(r.content)
+        
 tday = time.strftime('%Y%m%d',time.localtime()) 
-print tday 
+# print tday 
+
 path = os.path.abspath(os.path.dirname(sys.argv[0])) 
+
+if os.path.isdir(path + r'\image') == False :#创建文件夹，如果不存在
+    os.makedirs(path + r'\image')
+
 save_path = path + '\\image\\bing%s.jpg' % tday
 # save_path = 'E:\\background\\bing%s.jpg' % tday
 downloadpic(img_url, save_path)
