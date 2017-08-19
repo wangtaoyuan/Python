@@ -40,4 +40,4 @@ save_path = 'E:\\background\\bing%s.jpg' % tday
 
 downloadpic(img_url, save_path)#下载壁纸
 
-win32api.MessageBox(0, u"bing壁纸下载完成", u"提示", win32con.MB_OK)
+win32api.MessageBox(0, u"bing壁纸下载完成\n已下载至E:\\background", u"提示", win32con.MB_OK)
