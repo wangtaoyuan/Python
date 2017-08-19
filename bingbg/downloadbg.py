@@ -9,7 +9,7 @@ import requests
 import time
 import os
 import sys
-
+import win32api, win32con
 url = 'http://cn.bing.com'
 #伪装头信息
 user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:40.0) Gecko/20100101 Firefox/40.0'
@@ -21,22 +21,20 @@ head = content.find(r'g_img=') + len(r'g_img={url: "')
 tail = content.find(r'.jpg') + 4
 img_url = url + content[head: tail]#对content进行切片取图片的url
 time.sleep(1)
-# print img_url
 
-def downloadpic(image_url, save_path):
+
+def downloadpic(image_url, save_path):#下载壁纸函数
     r = requests.get(image_url)
-
     with open(save_path, "wb") as code:
         code.write(r.content)
         
 tday = time.strftime('%Y%m%d',time.localtime()) 
-# print tday 
 
-path = os.path.abspath(os.path.dirname(sys.argv[0])) 
+if os.path.isdir(r'E:\background') == False :#创建文件夹，如果不存在
+    os.makedirs( r'E:\background')
 
-if os.path.isdir(path + r'\image') == False :#创建文件夹，如果不存在
-    os.makedirs(path + r'\image')
+save_path = 'E:\\background\\bing%s.jpg' % tday
 
-save_path = path + '\\image\\bing%s.jpg' % tday
-# save_path = 'E:\\background\\bing%s.jpg' % tday
-downloadpic(img_url, save_path)
+downloadpic(img_url, save_path)#下载壁纸
+
+win32api.MessageBox(0, u"bing壁纸下载完成", u"提示", win32con.MB_OK)
