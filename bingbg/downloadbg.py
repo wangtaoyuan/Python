@@ -15,8 +15,11 @@ url = 'http://cn.bing.com'
 user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:40.0) Gecko/20100101 Firefox/40.0'
 headers = {'User-Agent':user_agent}
 request = urllib2.Request(url,headers)
+try:
+    content = urllib2.urlopen(url).read()#会抛urllib2.URLError异常
+except urllib2.URLError, e:
+    win32api.MessageBox(0, u"网络连接异常", u"错误提示", win32con.MB_OK)
 
-content = urllib2.urlopen(url).read()
 head = content.find(r'g_img=') + len(r'g_img={url: "')
 tail = content.find(r'.jpg') + 4
 img_url = url + content[head: tail]#对content进行切片取图片的url
